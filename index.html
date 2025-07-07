@@ -193,7 +193,7 @@
         </div>
 
         <div class="form-container">
-            <form id="registrationForm" action="https://script.google.com/macros/s/AKfycbxBZfsd9CgDwwtJUE_0Xk7HHUb6pVlHscvceDQT6v4MgmuAB5Yt5tpZsV0LsSyPJaYD/exec" method="POST" target="hiddenIframe">
+            <form id="registrationForm" action="https://script.google.com/macros/s/AKfycbz3YOB5QphElF2ZmdxHBXCoYiiKnrhElce-iHSg4jZkbXPlLSP5j0JqLel8rSD3jIyG/exec" method="POST" target="hiddenIframe">
                 <div class="form-group">
                     <label for="class">班級 <span class="required">*</span></label>
                     <select id="class" name="class" required>
@@ -387,6 +387,8 @@
 
         // 表單提交
         form.addEventListener('submit', function(e) {
+            e.preventDefault(); // 阻止默認提交
+            
             let isValid = true;
 
             // 驗證必填欄位
@@ -448,21 +450,43 @@
             }
 
             if (!isValid) {
-                e.preventDefault();
                 return false;
             }
 
             // 處理空白數字欄位
-            if (!adultCount) document.getElementById('adultCount').value = '0';
-            if (!childCount) document.getElementById('childCount').value = '0';
-            if (!infantCount) document.getElementById('infantCount').value = '0';
+            const finalAdultCount = adultCount || '0';
+            const finalChildCount = childCount || '0';
+            const finalInfantCount = infantCount || '0';
 
             // 顯示載入中
             form.style.display = 'none';
             loadingDiv.style.display = 'block';
 
-            // 設定提交成功的處理
+            // 使用 JSONP 方式提交到 GAS
+            const gasUrl = 'https://script.google.com/macros/s/AKfycbz-FvPkMDhNDIsgfoRELvdMltkaZylBYiM4MmMlQF2EC1_7vx-CjjWT6EGhgrQUmRji/exec';
+            
+            const params = new URLSearchParams({
+                class: classValue,
+                name: name,
+                nickname: document.getElementById('nickname').value.trim(),
+                phone: phone,
+                lineId: lineId,
+                diet: diet,
+                adultCount: finalAdultCount,
+                childCount: finalChildCount,
+                infantCount: finalInfantCount,
+                specialNeeds: document.getElementById('specialNeeds').value.trim(),
+                remarks: document.getElementById('remarks').value.trim()
+            });
+
+            // 創建 script 標籤進行 JSONP 請求
+            const script = document.createElement('script');
+            script.src = gasUrl + '?' + params.toString();
+            document.head.appendChild(script);
+
+            // 設定超時處理
             setTimeout(function() {
+                document.head.removeChild(script);
                 loadingDiv.style.display = 'none';
                 successDiv.style.display = 'block';
                 
@@ -474,7 +498,7 @@
                     successDiv.style.display = 'none';
                     form.style.display = 'block';
                 }, 3000);
-            }, 2000);
+            }, 3000);
         });
     </script>
 </body>
