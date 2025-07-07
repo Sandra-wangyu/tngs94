@@ -179,6 +179,10 @@
                 font-size: 24px;
             }
         }
+
+        .hidden-iframe {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -189,7 +193,7 @@
         </div>
 
         <div class="form-container">
-            <form id="registrationForm">
+            <form id="registrationForm" action="https://script.google.com/macros/s/AKfycbz3YOB5QphElF2ZmdxHBXCoYiiKnrhElce-iHSg4jZkbXPlLSP5j0JqLel8rSD3jIyG/exec" method="POST" target="hiddenIframe">
                 <div class="form-group">
                     <label for="class">班級 <span class="required">*</span></label>
                     <select id="class" name="class" required>
@@ -285,6 +289,8 @@
                 <button type="submit" class="submit-btn">送出報名</button>
             </form>
 
+            <iframe name="hiddenIframe" class="hidden-iframe"></iframe>
+
             <div class="loading" id="loading">
                 <p>正在處理中，請稍候...</p>
             </div>
@@ -315,7 +321,7 @@
 
         // 驗證數字
         function validateNumber(value) {
-            if (value === '' || value === null) return true; // 空值允許
+            if (value === '' || value === null) return true;
             const num = parseInt(value);
             return !isNaN(num) && num >= 0;
         }
@@ -380,9 +386,7 @@
         });
 
         // 表單提交
-        form.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
+        form.addEventListener('submit', function(e) {
             let isValid = true;
 
             // 驗證必填欄位
@@ -413,6 +417,16 @@
                 isValid = false;
             }
 
+            if (!classValue) {
+                alert('請選擇班級');
+                isValid = false;
+            }
+
+            if (!diet) {
+                alert('請選擇葷食或素食');
+                isValid = false;
+            }
+
             // 驗證數字欄位
             const adultCount = document.getElementById('adultCount').value;
             const childCount = document.getElementById('childCount').value;
@@ -433,59 +447,38 @@
                 isValid = false;
             }
 
-            if (!isValid) return;
+            if (!isValid) {
+                e.preventDefault();
+                return false;
+            }
+
+            // 處理空白數字欄位
+            if (!adultCount) document.getElementById('adultCount').value = '0';
+            if (!childCount) document.getElementById('childCount').value = '0';
+            if (!infantCount) document.getElementById('infantCount').value = '0';
 
             // 顯示載入中
             form.style.display = 'none';
             loadingDiv.style.display = 'block';
 
-            // 準備資料
-            const formData = {
-                class: classValue,
-                name: name,
-                nickname: document.getElementById('nickname').value.trim(),
-                phone: phone,
-                lineId: lineId,
-                diet: diet,
-                adultCount: adultCount || '0',
-                childCount: childCount || '0',
-                infantCount: infantCount || '0',
-                specialNeeds: document.getElementById('specialNeeds').value.trim(),
-                remarks: document.getElementById('remarks').value.trim()
-            };
-
-            try {
-                // 使用 FormData 方式提交到 Google Apps Script
-                const formDataForSubmit = new FormData();
-                Object.keys(formData).forEach(key => {
-                    formDataForSubmit.append(key, formData[key]);
-                });
-
-                const response = await fetch('https://script.google.com/macros/s/AKfycbz3YOB5QphElF2ZmdxHBXCoYiiKnrhElce-iHSg4jZkbXPlLSP5j0JqLel8rSD3jIyG/exec', {
-                    method: 'POST',
-                    body: formDataForSubmit
-                });
-
-                const result = await response.json();
-                
-                if (result.success) {
-                    loadingDiv.style.display = 'none';
-                    successDiv.innerHTML = `<p>${result.message}</p>`;
-                    successDiv.style.display = 'block';
-                    
-                    // 重置表單
-                    form.reset();
-                } else {
-                    throw new Error(result.message);
-                }
-                
-            } catch (error) {
-                console.error('提交失敗:', error);
+            // 設定提交成功的處理
+            setTimeout(function() {
                 loadingDiv.style.display = 'none';
-                form.style.display = 'block';
-                alert('提交失敗，請稍後再試');
-            }
+                successDiv.style.display = 'block';
+                
+                // 重置表單
+                form.reset();
+                
+                // 3秒後重新顯示表單
+                setTimeout(function() {
+                    successDiv.style.display = 'none';
+                    form.style.display = 'block';
+                }, 3000);
+            }, 2000);
         });
+    </script>
+</body>
+</html>
     </script>
 </body>
 </html>
