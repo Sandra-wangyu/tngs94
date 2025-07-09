@@ -295,19 +295,25 @@
 
                 <div class="form-group">
                     <label>是否攜眷 <span class="required">*</span></label>
-                    <div style="margin-top: 12px; display: flex; flex-direction: column; gap: 12px;">
-                        <div style="padding: 8px 12px; border: 2px solid #e6e0d8; border-radius: 8px; background-color: #fefefe; text-align: left;">
-                            <label style="display: flex; align-items: center; cursor: pointer; font-weight: normal; margin: 0;">
-                                <input type="radio" id="noCompanion" name="hasCompanion" value="no" style="margin: 0 8px 0 0; transform: scale(1.2);" required>
-                                <span style="color: #6b5b45;">否，同學會自行去 <strong style="color: #8b7355;">$2,000/人</strong></span>
-                            </label>
-                        </div>
-                        <div style="padding: 8px 12px; border: 2px solid #e6e0d8; border-radius: 8px; background-color: #fefefe; text-align: left;">
-                            <label style="display: flex; align-items: center; cursor: pointer; font-weight: normal; margin: 0;">
-                                <input type="radio" id="yesCompanion" name="hasCompanion" value="yes" style="margin: 0 8px 0 0; transform: scale(1.2);" required>
-                                <span style="color: #6b5b45;">是，攜眷參加</span>
-                            </label>
-                        </div>
+                        <div style="margin-top: 12px; display: flex; flex-direction: column; gap: 12px;">
+
+                        <!-- 選項1 -->
+  <div style="padding: 8px 12px; border: 2px solid #e6e0d8; border-radius: 8px; background-color: #fefefe;">
+    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-weight: normal; margin: 0;">
+      <input type="radio" name="hasCompanion" value="no" style="transform: scale(1.2); margin: 0;" required>
+      <span style="color: #6b5b45;">否，同學會自行去 $2,000/人</span>
+    </label>
+  </div>
+
+  <!-- 選項2 -->
+  <div style="padding: 8px 12px; border: 2px solid #e6e0d8; border-radius: 8px; background-color: #fefefe;">
+    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-weight: normal; margin: 0;">
+      <input type="radio" name="hasCompanion" value="yes" style="transform: scale(1.2); margin: 0;">
+      <span style="color: #6b5b45;">是，攜眷參加</span>
+    </label>
+  </div>
+
+</div>
                     </div>
                 </div>
 
