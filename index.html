@@ -1,11 +1,4 @@
-.hidden-iframe {
-            display: none !important;
-            width: 0 !important;
-            height: 0 !important;
-            border: none !important;
-            position: absolute !important;
-            left: -9999px !important;
-        }<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
@@ -186,30 +179,6 @@
                 font-size: 24px;
             }
         }
-
-        .radio-group {
-            text-align: left !important;
-        }
-        
-        .radio-option {
-            text-align: left !important;
-            margin-bottom: 12px;
-        }
-        
-        .radio-option input[type="radio"] {
-            margin: 0 8px 0 0 !important;
-            transform: scale(1.2);
-            float: none !important;
-            display: inline !important;
-            position: static !important;
-        }
-        
-        .radio-option label {
-            display: block !important;
-            text-align: left !important;
-            cursor: pointer;
-            font-weight: normal;
-        }
     </style>
 </head>
 <body>
@@ -246,7 +215,7 @@
         </div>
 
         <div class="form-container">
-            <form id="registrationForm" action="https://script.google.com/macros/s/AKfycbz3YOB5QphElF2ZmdxHBXCoYiiKnrhElce-iHSg4jZkbXPlLSP5j0JqLel8rSD3jIyG/exec" method="POST" target="hiddenIframe">
+            <form id="registrationForm">
                 <div class="form-group">
                     <label for="class">班級 <span class="required">*</span></label>
                     <select id="class" name="class" required>
@@ -381,8 +350,6 @@ EX：籃球隊團報"></textarea>
                 <button type="submit" class="submit-btn">送出報名</button>
             </form>
 
-            <iframe name="hiddenIframe" class="hidden-iframe"></iframe>
-
             <div class="loading" id="loading">
                 <p>正在處理中，請稍候...</p>
             </div>
@@ -439,18 +406,19 @@ EX：籃球隊團報"></textarea>
                 document.getElementById('totalPeople').textContent = '總報名人數：1人';
                 document.getElementById('totalCost').textContent = '總費用：$2,000 元';
                 document.getElementById('summaryDisplay').style.display = 'block';
-            } else {
+            } else if (hasCompanion === 'yes') {
                 // 攜眷：計算各類人數和費用
                 const adults = parseInt(document.getElementById('adultCount').value) || 1;
                 const children = parseInt(document.getElementById('childCount').value) || 0;
                 const infants = parseInt(document.getElementById('infantCount').value) || 0;
                 
+                // 只有大人和佔位小孩需要計費
                 const totalCost = (adults + children) * 2000;
                 
                 document.getElementById('totalPeople').textContent = 
                     `總報名人數：大人 ${adults} 人、小孩須位置 ${children} 人、小孩不占位 ${infants} 人`;
                 document.getElementById('totalCost').textContent = 
-                    `總費用：${totalCost.toLocaleString()} 元`;
+                    `總費用：$${totalCost.toLocaleString()} 元 (小孩不占位免費)`;
                 document.getElementById('summaryDisplay').style.display = 'block';
             }
         }
@@ -559,7 +527,7 @@ EX：籃球隊團報"></textarea>
             const email = document.getElementById('email').value.trim();
             const classValue = document.getElementById('class').value;
             const diet = document.getElementById('diet').value;
-            const hasCompanion = document.querySelector('input[name="hasCompanion"]:checked');
+            const hasCompanion = document.getElementById('hasCompanion').value;
 
             if (!name) {
                 showError('name', 'nameError', '請輸入姓名');
@@ -600,7 +568,7 @@ EX：籃球隊團報"></textarea>
                 isValid = false;
             }
 
-            if (!hasCompanion) {
+            if (!hasCompanion || hasCompanion === '') {
                 alert('請選擇是否攜眷');
                 isValid = false;
             }
@@ -615,7 +583,7 @@ EX：籃球隊團報"></textarea>
             let finalInfantCount = '0';
             let finalChildChairs = '0';
 
-            if (hasCompanion && hasCompanion === 'yes') {
+            if (hasCompanion === 'yes') {
                 const adultCount = document.getElementById('adultCount').value;
                 const childCount = document.getElementById('childCount').value;
                 const infantCount = document.getElementById('infantCount').value;
@@ -682,7 +650,11 @@ EX：籃球隊團報"></textarea>
 
             // 設定超時處理
             setTimeout(function() {
-                document.head.removeChild(script);
+                try {
+                    document.head.removeChild(script);
+                } catch(e) {
+                    // 忽略移除錯誤
+                }
                 loadingDiv.style.display = 'none';
                 successDiv.style.display = 'block';
                 
@@ -693,8 +665,8 @@ EX：籃球隊團報"></textarea>
                 setTimeout(function() {
                     successDiv.style.display = 'none';
                     form.style.display = 'block';
-                }, 10000);
-            }, 10000);
+                }, 3000);
+            }, 3000);
         });
     </script>
 </body>
