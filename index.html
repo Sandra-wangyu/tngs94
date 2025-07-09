@@ -1,26 +1,9 @@
-// 驗證數字
-        function validateNumber(value) {
-            if (value === '' || value === null) return true;
-            const num = parseInt(value);
-            return !isNaN(num) && num >= 0;
-        }
-
-        // Email 即時驗證
-        document.getElementById('email').addEventListener('input', function() {
-            const email = this.value.trim();
-            if (email && !validateEmail(email)) {
-                showError('email', 'emailError', '請輸入正確的Email格式');
-            } else {
-                hideError('email', 'emailError');
-            }
-        });                <div class="form-row">
-                    <div class="form-group">
-                        <label<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>校友會報名表單</title>
+    <title>TNGS 94級校友會報名表單</title>
     <style>
         * {
             margin: 0;
@@ -279,6 +262,15 @@
                         <label for="nickname">外號</label>
                         <input type="text" id="nickname" name="nickname">
                     </div>
+
+                    <div class="form-group">
+                        <label for="diet">葷食/素食 <span class="required">*</span></label>
+                        <select id="diet" name="diet" required>
+                            <option value="">請選擇</option>
+                            <option value="葷食">葷食</option>
+                            <option value="素食">素食</option>
+                        </select>
+                    </div>
                 </div>
 
                 <div class="form-row">
@@ -302,26 +294,17 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="diet">葷食/素食 <span class="required">*</span></label>
-                    <select id="diet" name="diet" required>
-                        <option value="">請選擇</option>
-                        <option value="葷食">葷食</option>
-                        <option value="素食">素食</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
                     <label>是否攜眷 <span class="required">*</span></label>
                     <div style="margin-top: 12px; display: flex; flex-direction: column; gap: 12px;">
-                        <div style="padding: 12px; border: 2px solid #e6e0d8; border-radius: 8px; background-color: #fefefe;">
+                        <div style="padding: 8px 12px; border: 2px solid #e6e0d8; border-radius: 8px; background-color: #fefefe; text-align: left;">
                             <label style="display: flex; align-items: center; cursor: pointer; font-weight: normal; margin: 0;">
-                                <input type="radio" id="noCompanion" name="hasCompanion" value="no" style="margin-right: 8px; transform: scale(1.2);" required>
+                                <input type="radio" id="noCompanion" name="hasCompanion" value="no" style="margin: 0 8px 0 0; transform: scale(1.2);" required>
                                 <span style="color: #6b5b45;">否，同學會自行去 <strong style="color: #8b7355;">$2,000/人</strong></span>
                             </label>
                         </div>
-                        <div style="padding: 12px; border: 2px solid #e6e0d8; border-radius: 8px; background-color: #fefefe;">
+                        <div style="padding: 8px 12px; border: 2px solid #e6e0d8; border-radius: 8px; background-color: #fefefe; text-align: left;">
                             <label style="display: flex; align-items: center; cursor: pointer; font-weight: normal; margin: 0;">
-                                <input type="radio" id="yesCompanion" name="hasCompanion" value="yes" style="margin-right: 8px; transform: scale(1.2);" required>
+                                <input type="radio" id="yesCompanion" name="hasCompanion" value="yes" style="margin: 0 8px 0 0; transform: scale(1.2);" required>
                                 <span style="color: #6b5b45;">是，攜眷參加</span>
                             </label>
                         </div>
@@ -366,7 +349,7 @@
 
                 <div class="form-group">
                     <label for="specialNeeds">特殊需求</label>
-                    <textarea id="specialNeeds" name="specialNeeds" placeholder="如有特殊需求請在此說明"></textarea>
+                    <textarea id="specialNeeds" name="specialNeeds" placeholder="如有特殊需求請在此說明" style="min-height: 60px;"></textarea>
                 </div>
 
                 <div class="form-group">
@@ -417,6 +400,13 @@ EX：籃球隊團報"></textarea>
             return emailRegex.test(email);
         }
 
+        // 驗證數字
+        function validateNumber(value) {
+            if (value === '' || value === null) return true;
+            const num = parseInt(value);
+            return !isNaN(num) && num >= 0;
+        }
+
         // 計算總費用和人數
         function calculateTotal() {
             const hasCompanion = document.querySelector('input[name="hasCompanion"]:checked');
@@ -442,7 +432,7 @@ EX：籃球隊團報"></textarea>
                 document.getElementById('totalPeople').textContent = 
                     `總報名人數：大人 ${adults} 人、小孩須位置 ${children} 人、小孩不占位 ${infants} 人`;
                 document.getElementById('totalCost').textContent = 
-                    `總費用：${totalCost.toLocaleString()} 元`;
+                    `總費用：$${totalCost.toLocaleString()} 元`;
                 document.getElementById('summaryDisplay').style.display = 'block';
             }
         }
@@ -516,20 +506,29 @@ EX：籃球隊團報"></textarea>
             }
         });
 
-            // 驗證數字欄位
-            ['adultCount', 'childCount', 'infantCount', 'childChairs'].forEach(id => {
-                const element = document.getElementById(id);
-                if (element) {
-                    element.addEventListener('input', function() {
-                        const value = this.value;
-                        if (value && !validateNumber(value)) {
-                            showError(id, id + 'Error', '請輸入有效的數字（0或正整數）');
-                        } else {
-                            hideError(id, id + 'Error');
-                        }
-                    });
-                }
-            });
+        document.getElementById('email').addEventListener('input', function() {
+            const email = this.value.trim();
+            if (email && !validateEmail(email)) {
+                showError('email', 'emailError', '請輸入正確的Email格式');
+            } else {
+                hideError('email', 'emailError');
+            }
+        });
+
+        // 數字欄位驗證
+        ['adultCount', 'childCount', 'infantCount', 'childChairs'].forEach(id => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.addEventListener('input', function() {
+                    const value = this.value;
+                    if (value && !validateNumber(value)) {
+                        showError(id, id + 'Error', '請輸入有效的數字（0或正整數）');
+                    } else {
+                        hideError(id, id + 'Error');
+                    }
+                });
+            }
+        });
 
         // 表單提交
         form.addEventListener('submit', function(e) {
@@ -590,6 +589,10 @@ EX：籃球隊團報"></textarea>
                 isValid = false;
             }
 
+            if (!isValid) {
+                return false;
+            }
+
             // 處理攜眷相關數據
             let finalAdultCount = '1';
             let finalChildCount = '0';
@@ -620,6 +623,10 @@ EX：籃球隊團報"></textarea>
                 if (childChairs && !validateNumber(childChairs)) {
                     showError('childChairs', 'childChairsError', '請輸入有效的數字（0或正整數）');
                     isValid = false;
+                }
+
+                if (!isValid) {
+                    return false;
                 }
 
                 finalAdultCount = adultCount || '1';
