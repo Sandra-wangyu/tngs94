@@ -1,4 +1,11 @@
-<!DOCTYPE html>
+.hidden-iframe {
+            display: none !important;
+            width: 0 !important;
+            height: 0 !important;
+            border: none !important;
+            position: absolute !important;
+            left: -9999px !important;
+        }<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
@@ -180,8 +187,28 @@
             }
         }
 
-        .hidden-iframe {
-            display: none;
+        .radio-group {
+            text-align: left !important;
+        }
+        
+        .radio-option {
+            text-align: left !important;
+            margin-bottom: 12px;
+        }
+        
+        .radio-option input[type="radio"] {
+            margin: 0 8px 0 0 !important;
+            transform: scale(1.2);
+            float: none !important;
+            display: inline !important;
+            position: static !important;
+        }
+        
+        .radio-option label {
+            display: block !important;
+            text-align: left !important;
+            cursor: pointer;
+            font-weight: normal;
         }
     </style>
 </head>
@@ -294,27 +321,12 @@
                 </div>
 
                 <div class="form-group">
-                    <label>是否攜眷 <span class="required">*</span></label>
-                        <div style="margin-top: 12px; display: flex; flex-direction: column; gap: 12px;">
-
-                        <!-- 選項1 -->
-  <div style="padding: 8px 12px; border: 2px solid #e6e0d8; border-radius: 8px; background-color: #fefefe;">
-    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-weight: normal; margin: 0;">
-      <input type="radio" name="hasCompanion" value="no" style="transform: scale(1.2); margin: 0;" required>
-      <span style="color: #6b5b45;">否，同學會自行去 $2,000/人</span>
-    </label>
-  </div>
-
-  <!-- 選項2 -->
-  <div style="padding: 8px 12px; border: 2px solid #e6e0d8; border-radius: 8px; background-color: #fefefe;">
-    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-weight: normal; margin: 0;">
-      <input type="radio" name="hasCompanion" value="yes" style="transform: scale(1.2); margin: 0;">
-      <span style="color: #6b5b45;">是，攜眷參加</span>
-    </label>
-  </div>
-
-</div>
-                    </div>
+                    <label for="hasCompanion">是否攜眷 <span class="required">*</span></label>
+                    <select id="hasCompanion" name="hasCompanion" required>
+                        <option value="">請選擇</option>
+                        <option value="no">否，同學會自行去 ($2,000/人)</option>
+                        <option value="yes">是，攜眷參加</option>
+                    </select>
                 </div>
 
                 <div id="companionDetails" style="display: none;">
@@ -415,14 +427,14 @@ EX：籃球隊團報"></textarea>
 
         // 計算總費用和人數
         function calculateTotal() {
-            const hasCompanion = document.querySelector('input[name="hasCompanion"]:checked');
+            const hasCompanion = document.getElementById('hasCompanion').value;
             
             if (!hasCompanion) {
                 document.getElementById('summaryDisplay').style.display = 'none';
                 return;
             }
 
-            if (hasCompanion.value === 'no') {
+            if (hasCompanion === 'no') {
                 // 不攜眷：只有自己
                 document.getElementById('totalPeople').textContent = '總報名人數：1人';
                 document.getElementById('totalCost').textContent = '總費用：$2,000 元';
@@ -438,26 +450,24 @@ EX：籃球隊團報"></textarea>
                 document.getElementById('totalPeople').textContent = 
                     `總報名人數：大人 ${adults} 人、小孩須位置 ${children} 人、小孩不占位 ${infants} 人`;
                 document.getElementById('totalCost').textContent = 
-                    `總費用：$${totalCost.toLocaleString()} 元`;
+                    `總費用：${totalCost.toLocaleString()} 元`;
                 document.getElementById('summaryDisplay').style.display = 'block';
             }
         }
 
         // 顯示/隱藏攜眷詳細資訊
-        document.querySelectorAll('input[name="hasCompanion"]').forEach(radio => {
-            radio.addEventListener('change', function() {
-                const companionDetails = document.getElementById('companionDetails');
-                if (this.value === 'yes') {
-                    companionDetails.style.display = 'block';
-                    // 設定預設值
-                    if (!document.getElementById('adultCount').value) {
-                        document.getElementById('adultCount').value = '1';
-                    }
-                } else {
-                    companionDetails.style.display = 'none';
+        document.getElementById('hasCompanion').addEventListener('change', function() {
+            const companionDetails = document.getElementById('companionDetails');
+            if (this.value === 'yes') {
+                companionDetails.style.display = 'block';
+                // 設定預設值
+                if (!document.getElementById('adultCount').value) {
+                    document.getElementById('adultCount').value = '1';
                 }
-                calculateTotal();
-            });
+            } else {
+                companionDetails.style.display = 'none';
+            }
+            calculateTotal();
         });
 
         // 監聽人數變化，即時計算
@@ -605,7 +615,7 @@ EX：籃球隊團報"></textarea>
             let finalInfantCount = '0';
             let finalChildChairs = '0';
 
-            if (hasCompanion && hasCompanion.value === 'yes') {
+            if (hasCompanion && hasCompanion === 'yes') {
                 const adultCount = document.getElementById('adultCount').value;
                 const childCount = document.getElementById('childCount').value;
                 const infantCount = document.getElementById('infantCount').value;
@@ -656,7 +666,7 @@ EX：籃球隊團報"></textarea>
                 lineId: lineId,
                 email: email,
                 diet: diet,
-                hasCompanion: hasCompanion.value,
+                hasCompanion: hasCompanion,
                 adultCount: finalAdultCount,
                 childCount: finalChildCount,
                 infantCount: finalInfantCount,
@@ -683,8 +693,8 @@ EX：籃球隊團報"></textarea>
                 setTimeout(function() {
                     successDiv.style.display = 'none';
                     form.style.display = 'block';
-                }, 3000);
-            }, 3000);
+                }, 10000);
+            }, 10000);
         });
     </script>
 </body>
