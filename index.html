@@ -1,9 +1,26 @@
-<!DOCTYPE html>
+// 驗證數字
+        function validateNumber(value) {
+            if (value === '' || value === null) return true;
+            const num = parseInt(value);
+            return !isNaN(num) && num >= 0;
+        }
+
+        // Email 即時驗證
+        document.getElementById('email').addEventListener('input', function() {
+            const email = this.value.trim();
+            if (email && !validateEmail(email)) {
+                showError('email', 'emailError', '請輸入正確的Email格式');
+            } else {
+                hideError('email', 'emailError');
+            }
+        });                <div class="form-row">
+                    <div class="form-group">
+                        <label<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TNGS 94級校友會報名表單</title>
+    <title>校友會報名表單</title>
     <style>
         * {
             margin: 0;
@@ -188,37 +205,36 @@
 <body>
     <div class="container">
         <div class="header">
-    <h1>TNGS 94級校友會報名表單</h1>
-    <p>歡迎校友踴躍參加</p>
-    
-    <div style="background: white; margin: 20px 0; padding: 20px; border-radius: 8px; text-align: left; font-size: 14px; line-height: 1.8;">
-        <div style="margin-bottom: 15px;">
-            <strong style="color: #8b7355;">📅 時間：</strong>2025年11月8號 (六)<br>
-            <strong style="color: #8b7355;">📍 地點：</strong>台南市安平的富霖宴會廳<br>
-            <strong style="color: #8b7355;">🎉 活動內容：</strong>吃飯、回南女拍大合照<br>
-            <strong style="color: #8b7355;">💰 費用：</strong>每人2000元
-        </div>
-
-        <div style="margin-bottom: 15px;">
-            <strong style="color: #8b7355; font-size: 15px;">▲ 流程</strong><br>
-            <div style="margin-left: 10px;">
-                11:30&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;富霖餐廳報到<br>
-                12:00-14:00&nbsp;&nbsp;&nbsp;&nbsp;餐會、表演<br>
-                14:40&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;返回南女校園，拍大合照<br>
-                15:00-15:30&nbsp;&nbsp;&nbsp;&nbsp;校園巡禮
+            <h1>TNGS 94級校友會報名表單</h1>
+            <p>歡迎校友踴躍參加</p>
+            
+            <div style="background: white; margin: 20px 0; padding: 20px; border-radius: 8px; text-align: left; font-size: 14px; line-height: 1.8;">
+                <div style="margin-bottom: 15px;">
+                    <strong style="color: #8b7355;">📅 時間：</strong>2025年11月8號 (六)<br>
+                    <strong style="color: #8b7355;">📍 地點：</strong>台南市安平的富霖宴會廳<br>
+                    <strong style="color: #8b7355;">🎉 活動內容：</strong>吃飯、回南女拍大合照<br>
+                    <strong style="color: #8b7355;">💰 費用：</strong>每人2000元
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <strong style="color: #8b7355; font-size: 15px;">▲ 流程</strong><br>
+                    <div style="margin-left: 10px;">
+                        11:30&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;富霖餐廳報到<br>
+                        12:00-14:00&nbsp;&nbsp;&nbsp;&nbsp;餐會、表演<br>
+                        14:40&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;返回南女校園，拍大合照<br>
+                        15:00-15:30&nbsp;&nbsp;&nbsp;&nbsp;校園巡禮
+                    </div>
+                </div>
+                <div>
+                    <strong style="color: #8b7355; font-size: 15px;">▲ 費用說明</strong><br>
+                    <div style="margin-left: 10px;">
+                        <strong>1. 每人2000元</strong><br>
+                        可攜眷費用一樣，每桌坐十人有座位即需繳費，如果有小小孩不太用餐坐兒童椅則不需費用。<br><br>
+                        <strong>2. 包含：</strong>餐費、今年度校友會高級紀念品、師長桌餐費、師長獻花、各項雜支(音響、布置、會場接駁回南女的遊覽車...)
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div>
-            <strong style="color: #8b7355; font-size: 15px;">▲ 費用說明</strong><br>
-            <div style="margin-left: 10px;">
-                <strong>1. 每人2000元</strong><br>
-                可攜眷費用一樣，每桌坐十人有座位即需繳費，如果有小小孩不太用餐坐兒童椅則不需費用。<br><br>
-                <strong>2. 包含：</strong>餐費、今年度校友會高級紀念品、師長桌餐費、師長獻花、各項雜支(音響、布置、會場接駁回南女的遊覽車...)
-            </div>
-        </div>
-    </div>
-</div>
         <div class="form-container">
             <form id="registrationForm" action="https://script.google.com/macros/s/AKfycbz3YOB5QphElF2ZmdxHBXCoYiiKnrhElce-iHSg4jZkbXPlLSP5j0JqLel8rSD3jIyG/exec" method="POST" target="hiddenIframe">
                 <div class="form-group">
@@ -244,7 +260,12 @@
                         <option value="第17班">第17班</option>
                         <option value="第18班">第18班</option>
                         <option value="第19班">第19班</option>
+                        <option value="滿10人團報">滿10人團報</option>
                     </select>
+                    <div style="margin-top: 8px; font-size: 12px; color: #6b5b45; line-height: 1.4;">
+                        <div>※ 自行選擇想加入的班級報名，不拘限本來的班級，並於備註說明即可</div>
+                        <div>※ 可自行揪團滿10人即可選擇「團報」，以一人姓名代表+填入完整報名人數</div>
+                    </div>
                 </div>
 
                 <div class="form-row">
@@ -269,9 +290,15 @@
 
                     <div class="form-group">
                         <label for="lineId">LINE ID <span class="required">*</span></label>
-                        <input type="text" id="lineId" name="lineId" required>
+                        <input type="text" id="lineId" name="lineId" required placeholder="請填入完整的LINE帳號(英數字)">
                         <div class="error" id="lineIdError">LINE ID 只能包含英文、數字、底線和點</div>
                     </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email <span class="required">*</span></label>
+                    <input type="email" id="email" name="email" required placeholder="請填寫能收到活動及匯款訊息之MAIL">
+                    <div class="error" id="emailError">請輸入正確的Email格式</div>
                 </div>
 
                 <div class="form-group">
@@ -283,24 +310,58 @@
                     </select>
                 </div>
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="adultCount">攜眷數量(大人)</label>
-                        <input type="number" id="adultCount" name="adultCount" min="0" class="number-input" placeholder="0">
-                        <div class="error" id="adultCountError">請輸入有效的數字</div>
+                <div class="form-group">
+                    <label>是否攜眷 <span class="required">*</span></label>
+                    <div style="margin-top: 12px; display: flex; flex-direction: column; gap: 12px;">
+                        <div style="padding: 12px; border: 2px solid #e6e0d8; border-radius: 8px; background-color: #fefefe;">
+                            <label style="display: flex; align-items: center; cursor: pointer; font-weight: normal; margin: 0;">
+                                <input type="radio" id="noCompanion" name="hasCompanion" value="no" style="margin-right: 8px; transform: scale(1.2);" required>
+                                <span style="color: #6b5b45;">否，同學會自行去 <strong style="color: #8b7355;">$2,000/人</strong></span>
+                            </label>
+                        </div>
+                        <div style="padding: 12px; border: 2px solid #e6e0d8; border-radius: 8px; background-color: #fefefe;">
+                            <label style="display: flex; align-items: center; cursor: pointer; font-weight: normal; margin: 0;">
+                                <input type="radio" id="yesCompanion" name="hasCompanion" value="yes" style="margin-right: 8px; transform: scale(1.2);" required>
+                                <span style="color: #6b5b45;">是，攜眷參加</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="companionDetails" style="display: none;">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="adultCount">大人(含自己，$2,000/人)</label>
+                            <input type="number" id="adultCount" name="adultCount" min="1" class="number-input" placeholder="1">
+                            <div class="error" id="adultCountError">請輸入有效的數字</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="childCount">小孩（佔位，$2,000/人）</label>
+                            <input type="number" id="childCount" name="childCount" min="0" class="number-input" placeholder="0">
+                            <div class="error" id="childCountError">請輸入有效的數字</div>
+                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="childCount">攜眷數量(小孩)</label>
-                        <input type="number" id="childCount" name="childCount" min="0" class="number-input" placeholder="0">
-                        <div class="error" id="childCountError">請輸入有效的數字</div>
-                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="infantCount">小孩（不佔位）</label>
+                            <input type="number" id="infantCount" name="infantCount" min="0" class="number-input" placeholder="0">
+                            <div class="error" id="infantCountError">請輸入有效的數字</div>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="infantCount">攜眷數量(不佔位小孩)</label>
-                        <input type="number" id="infantCount" name="infantCount" min="0" class="number-input" placeholder="0">
-                        <div class="error" id="infantCountError">請輸入有效的數字</div>
+                        <div class="form-group">
+                            <label for="childChairs">需要兒童椅</label>
+                            <input type="number" id="childChairs" name="childChairs" min="0" class="number-input" placeholder="0">
+                            <span style="font-size: 12px; color: #6b5b45; margin-left: 8px;">張</span>
+                            <div class="error" id="childChairsError">請輸入有效的數字</div>
+                        </div>
                     </div>
+                </div>
+
+                <div id="summaryDisplay" style="display: none; background: #f8f9fa; padding: 16px; border-radius: 8px; margin: 16px 0; border-left: 4px solid #8b7355;">
+                    <div id="totalPeople" style="margin-bottom: 8px; font-weight: 500; color: #6b5b45;"></div>
+                    <div id="totalCost" style="font-weight: bold; color: #8b7355; font-size: 16px;"></div>
                 </div>
 
                 <div class="form-group">
@@ -310,7 +371,10 @@
 
                 <div class="form-group">
                     <label for="remarks">備註說明</label>
-                    <textarea id="remarks" name="remarks" placeholder="其他備註事項"></textarea>
+                    <textarea id="remarks" name="remarks" style="min-height: 120px;" placeholder="其他備註事項
+
+EX：原11班要併到15班
+EX：籃球隊團報"></textarea>
                 </div>
 
                 <button type="submit" class="submit-btn">送出報名</button>
@@ -323,7 +387,8 @@
             </div>
 
             <div class="success" id="success">
-                <p>報名成功！感謝您的參與</p>
+                <p>報名成功！感謝您的參與！</p>
+                <p style="margin-top: 10px; font-size: 14px;">相關活動細節和匯款資訊，會以MAIL方式通知，請確認是否收到MAIL，若超過一天未收到，請聯繫 XXX 聯絡資訊，謝謝您！</p>
             </div>
         </div>
     </div>
@@ -346,12 +411,63 @@
             return lineIdRegex.test(lineId);
         }
 
-        // 驗證數字
-        function validateNumber(value) {
-            if (value === '' || value === null) return true;
-            const num = parseInt(value);
-            return !isNaN(num) && num >= 0;
+        // 驗證Email
+        function validateEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
         }
+
+        // 計算總費用和人數
+        function calculateTotal() {
+            const hasCompanion = document.querySelector('input[name="hasCompanion"]:checked');
+            
+            if (!hasCompanion) {
+                document.getElementById('summaryDisplay').style.display = 'none';
+                return;
+            }
+
+            if (hasCompanion.value === 'no') {
+                // 不攜眷：只有自己
+                document.getElementById('totalPeople').textContent = '總報名人數：1人';
+                document.getElementById('totalCost').textContent = '總費用：$2,000 元';
+                document.getElementById('summaryDisplay').style.display = 'block';
+            } else {
+                // 攜眷：計算各類人數和費用
+                const adults = parseInt(document.getElementById('adultCount').value) || 1;
+                const children = parseInt(document.getElementById('childCount').value) || 0;
+                const infants = parseInt(document.getElementById('infantCount').value) || 0;
+                
+                const totalCost = (adults + children) * 2000;
+                
+                document.getElementById('totalPeople').textContent = 
+                    `總報名人數：大人 ${adults} 人、小孩須位置 ${children} 人、小孩不占位 ${infants} 人`;
+                document.getElementById('totalCost').textContent = 
+                    `總費用：${totalCost.toLocaleString()} 元`;
+                document.getElementById('summaryDisplay').style.display = 'block';
+            }
+        }
+
+        // 顯示/隱藏攜眷詳細資訊
+        document.querySelectorAll('input[name="hasCompanion"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const companionDetails = document.getElementById('companionDetails');
+                if (this.value === 'yes') {
+                    companionDetails.style.display = 'block';
+                    // 設定預設值
+                    if (!document.getElementById('adultCount').value) {
+                        document.getElementById('adultCount').value = '1';
+                    }
+                } else {
+                    companionDetails.style.display = 'none';
+                }
+                calculateTotal();
+            });
+        });
+
+        // 監聽人數變化，即時計算
+        ['adultCount', 'childCount', 'infantCount'].forEach(id => {
+            document.getElementById(id).addEventListener('input', calculateTotal);
+        });
 
         // 顯示錯誤訊息
         function showError(inputId, errorId, message) {
@@ -400,17 +516,20 @@
             }
         });
 
-        // 數字欄位驗證
-        ['adultCount', 'childCount', 'infantCount'].forEach(id => {
-            document.getElementById(id).addEventListener('input', function() {
-                const value = this.value;
-                if (value && !validateNumber(value)) {
-                    showError(id, id + 'Error', '請輸入有效的數字（0或正整數）');
-                } else {
-                    hideError(id, id + 'Error');
+            // 驗證數字欄位
+            ['adultCount', 'childCount', 'infantCount', 'childChairs'].forEach(id => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.addEventListener('input', function() {
+                        const value = this.value;
+                        if (value && !validateNumber(value)) {
+                            showError(id, id + 'Error', '請輸入有效的數字（0或正整數）');
+                        } else {
+                            hideError(id, id + 'Error');
+                        }
+                    });
                 }
             });
-        });
 
         // 表單提交
         form.addEventListener('submit', function(e) {
@@ -422,8 +541,10 @@
             const name = document.getElementById('name').value.trim();
             const phone = document.getElementById('phone').value.trim();
             const lineId = document.getElementById('lineId').value.trim();
+            const email = document.getElementById('email').value.trim();
             const classValue = document.getElementById('class').value;
             const diet = document.getElementById('diet').value;
+            const hasCompanion = document.querySelector('input[name="hasCompanion"]:checked');
 
             if (!name) {
                 showError('name', 'nameError', '請輸入姓名');
@@ -446,6 +567,14 @@
                 isValid = false;
             }
 
+            if (!email) {
+                showError('email', 'emailError', '請輸入Email');
+                isValid = false;
+            } else if (!validateEmail(email)) {
+                showError('email', 'emailError', '請輸入正確的Email格式');
+                isValid = false;
+            }
+
             if (!classValue) {
                 alert('請選擇班級');
                 isValid = false;
@@ -456,41 +585,55 @@
                 isValid = false;
             }
 
-            // 驗證數字欄位
-            const adultCount = document.getElementById('adultCount').value;
-            const childCount = document.getElementById('childCount').value;
-            const infantCount = document.getElementById('infantCount').value;
-
-            if (adultCount && !validateNumber(adultCount)) {
-                showError('adultCount', 'adultCountError', '請輸入有效的數字（0或正整數）');
+            if (!hasCompanion) {
+                alert('請選擇是否攜眷');
                 isValid = false;
             }
 
-            if (childCount && !validateNumber(childCount)) {
-                showError('childCount', 'childCountError', '請輸入有效的數字（0或正整數）');
-                isValid = false;
-            }
+            // 處理攜眷相關數據
+            let finalAdultCount = '1';
+            let finalChildCount = '0';
+            let finalInfantCount = '0';
+            let finalChildChairs = '0';
 
-            if (infantCount && !validateNumber(infantCount)) {
-                showError('infantCount', 'infantCountError', '請輸入有效的數字（0或正整數）');
-                isValid = false;
-            }
+            if (hasCompanion && hasCompanion.value === 'yes') {
+                const adultCount = document.getElementById('adultCount').value;
+                const childCount = document.getElementById('childCount').value;
+                const infantCount = document.getElementById('infantCount').value;
+                const childChairs = document.getElementById('childChairs').value;
 
-            if (!isValid) {
-                return false;
-            }
+                if (adultCount && !validateNumber(adultCount)) {
+                    showError('adultCount', 'adultCountError', '請輸入有效的數字（1或以上）');
+                    isValid = false;
+                }
 
-            // 處理空白數字欄位
-            const finalAdultCount = adultCount || '0';
-            const finalChildCount = childCount || '0';
-            const finalInfantCount = infantCount || '0';
+                if (childCount && !validateNumber(childCount)) {
+                    showError('childCount', 'childCountError', '請輸入有效的數字（0或正整數）');
+                    isValid = false;
+                }
+
+                if (infantCount && !validateNumber(infantCount)) {
+                    showError('infantCount', 'infantCountError', '請輸入有效的數字（0或正整數）');
+                    isValid = false;
+                }
+
+                if (childChairs && !validateNumber(childChairs)) {
+                    showError('childChairs', 'childChairsError', '請輸入有效的數字（0或正整數）');
+                    isValid = false;
+                }
+
+                finalAdultCount = adultCount || '1';
+                finalChildCount = childCount || '0';
+                finalInfantCount = infantCount || '0';
+                finalChildChairs = childChairs || '0';
+            }
 
             // 顯示載入中
             form.style.display = 'none';
             loadingDiv.style.display = 'block';
 
             // 使用 JSONP 方式提交到 GAS
-            const gasUrl = 'https://script.google.com/macros/s/AKfycbz-FvPkMDhNDIsgfoRELvdMltkaZylBYiM4MmMlQF2EC1_7vx-CjjWT6EGhgrQUmRji/exec';
+            const gasUrl = 'https://script.google.com/macros/s/AKfycbz3YOB5QphElF2ZmdxHBXCoYiiKnrhElce-iHSg4jZkbXPlLSP5j0JqLel8rSD3jIyG/exec';
             
             const params = new URLSearchParams({
                 class: classValue,
@@ -498,10 +641,13 @@
                 nickname: document.getElementById('nickname').value.trim(),
                 phone: phone,
                 lineId: lineId,
+                email: email,
                 diet: diet,
+                hasCompanion: hasCompanion.value,
                 adultCount: finalAdultCount,
                 childCount: finalChildCount,
                 infantCount: finalInfantCount,
+                childChairs: finalChildChairs,
                 specialNeeds: document.getElementById('specialNeeds').value.trim(),
                 remarks: document.getElementById('remarks').value.trim()
             });
