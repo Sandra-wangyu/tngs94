@@ -552,19 +552,39 @@ EX：籃球隊團報"></textarea>
 
         // 驗證團報人數和葷素食
         function validateGroupRegistration() {
-            const adults = parseInt(document.getElementById('groupAdultCount').value) || 0;
-            const children = parseInt(document.getElementById('groupChildCount').value) || 0;
-            const infants = parseInt(document.getElementById('groupInfantCount').value) || 0;
-            const meat = parseInt(document.getElementById('groupMeatCount').value) || 0;
-            const vegetarian = parseInt(document.getElementById('groupVegetarianCount').value) || 0;
-            
-            const totalPeople = adults + children + infants;
-            const totalDiet = meat + vegetarian;
-            
-            const dietDisplay = document.getElementById('dietDisplay');
-            const errorDisplay = document.getElementById('validationError');
-            
-            dietDisplay.textContent = `葷素食統計：葷食 ${meat} 位 + 素食 ${vegetarian} 位 = ${totalDiet} 位`;
+    const adults = parseInt(document.getElementById('groupAdultCount').value) || 0;
+    const children = parseInt(document.getElementById('groupChildCount').value) || 0;
+    const infants = parseInt(document.getElementById('groupInfantCount').value) || 0;
+    const meat = parseInt(document.getElementById('groupMeatCount').value) || 0;
+    const vegetarian = parseInt(document.getElementById('groupVegetarianCount').value) || 0;
+    
+    const totalPeople = adults + children + infants;
+    // 只計算需要用餐的人數（大人 + 小孩須位置）
+    const totalEatingPeople = adults + children;
+    const totalDiet = meat + vegetarian;
+    
+    const dietDisplay = document.getElementById('dietDisplay');
+    const errorDisplay = document.getElementById('validationError');
+    
+    dietDisplay.textContent = `葷素食統計：葷食 ${meat} 位 + 素食 ${vegetarian} 位 = ${totalDiet} 位`;
+    
+    // 檢查是否達到10人
+    if (totalPeople > 0 && totalPeople < 10) {
+        errorDisplay.textContent = `⚠️ 團報需至少10人，目前只有 ${totalPeople} 人`;
+        errorDisplay.style.display = 'block';
+        return false;
+    }
+    
+    // 檢查葷素食人數是否等於需用餐人數（僅記入大人+小孩須位置）
+    if (totalEatingPeople > 0 && totalDiet !== totalEatingPeople) {
+        errorDisplay.textContent = `⚠️ 葷素食總數 (${totalDiet}) 需等於總人數 (${totalEatingPeople})`;
+        errorDisplay.style.display = 'block';
+        return false;
+    }
+    
+    errorDisplay.style.display = 'none';
+    return true;
+}
             
             // 檢查是否達到10人
             if (totalPeople > 0 && totalPeople < 10) {
