@@ -41,9 +41,42 @@
             letter-spacing: 2px;
         }
 
-        .header p {
-            color: #999;
+        .header .description {
+            color: #666;
             font-size: 14px;
+            text-align: left;
+            max-width: 500px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .italic-questions {
+            font-style: italic;
+            margin-bottom: 5px;
+        }
+
+        .main-paragraph {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .invitation-section p {
+            margin-bottom: 5px;
+        }
+
+        .indent-1 {
+            margin-left: 2em;
+        }
+
+        .indent-2 {
+            margin-left: 4em;
+        }
+
+        .final-call {
+            font-weight: bold;
+            color: #d63384;
+            margin-top: 20px;
         }
 
         .form-container {
@@ -185,13 +218,24 @@
     <div class="container">
         <div class="header">
             <h1>TNGS重返南女風華<br>94級校友重聚活動</h1>
-            <p><i>還記得我們首次穿上白衣黑裙、肩背肉粽標誌踏入椰風谷的稚嫩模樣嗎？<br>
-還記得我們在排球場努力揮灑汗水、集氣喊聲加油那青春熱血的時光嗎？ 還記得我們揮揮衣袖、忍住眼淚大聲齊唱「夢中的故鄉」那天嗎？<br>
-很懷念所有和你一同在南女渡過的美好片段，<br>
-我們一起經歷過的合唱比賽、英文話劇比賽、校慶運動會、小會舞表演.....<br>
-在椰風谷1095天的日子宛若昨日歷歷在目，<br>怎麼不知不覺間，我們已經從南女畢業20年了呢？<br><br>
-趁著今年校友會逢十重聚活動，讓我們以最年輕一屆的身份（這個歲數還可以最年輕Ｔ＿＿Ｔ）<br> 坐下來好好敘舊，重溫專屬南女人的青春回憶！<br>
-錯過這次再等10年！把握（可能是）最後一次3字頭年齡的機會，再見一面吧 ：）</i></p>
+            
+            <div class="description">
+                <p class="italic-questions">還記得我們首次穿上白衣黑裙、肩背肉粽標誌踏入椰風谷的稚嫩模樣嗎？</p>
+                <p class="italic-questions">還記得我們在排球場努力揮灑汗水、集氣喊聲加油那青春熱血的時光嗎？</p>
+                <p class="italic-questions">還記得我們揮揮衣袖、忍住眼淚大聲齊唱「夢中的故鄉」那天嗎？</p>
+                
+                <p class="main-paragraph">
+                    很懷念所有和你一同在南女渡過的美好片段，我們一起經歷過的合唱比賽、英文話劇比賽、校慶運動會、小會舞表演.....在椰風谷1095天的日子宛若昨日歷歷在目，怎麼不知不覺間，我們已經從南女畢業20年了呢？
+                </p>
+                
+                <div class="invitation-section">
+                    <p>趁著今年校友會逢十重聚活動，</p>
+                    <p class="indent-1">讓我們以最年輕一屆的身份（這個歲數還可以最年輕Ｔ＿＿Ｔ）</p>
+                    <p class="indent-2">坐下來好好敘舊，重溫專屬南女人的青春回憶！</p>
+                </div>
+                
+                <p class="final-call">錯過這次再等10年！把握（可能是）最後一次3字頭年齡的機會，再見一面吧 ：）</p>
+            </div>
             
             <div style="background: white; margin: 20px 0; padding: 20px; border-radius: 8px; text-align: left; font-size: 14px; line-height: 1.8;">
                 <div style="margin-bottom: 15px;">
@@ -272,12 +316,9 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="diet">葷食/素食 <span class="required">*</span></label>
-                        <select id="diet" name="diet" required>
-                            <option value="">請選擇</option>
-                            <option value="葷食">葷食</option>
-                            <option value="素食">素食</option>
-                        </select>
+                        <label for="lineId">LINE ID <span class="required">*</span></label>
+                        <input type="text" id="lineId" name="lineId" required placeholder="請填入完整的LINE帳號(英數字)">
+                        <div class="error" id="lineIdError">LINE ID 只能包含英文、數字、底線和點</div>
                     </div>
                 </div>
 
@@ -289,16 +330,10 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="lineId">LINE ID <span class="required">*</span></label>
-                        <input type="text" id="lineId" name="lineId" required placeholder="請填入完整的LINE帳號(英數字)">
-                        <div class="error" id="lineIdError">LINE ID 只能包含英文、數字、底線和點</div>
+                        <label for="email">Email <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" required placeholder="請填寫能收到活動及匯款訊息之MAIL">
+                        <div class="error" id="emailError">請輸入正確的Email格式</div>
                     </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email <span class="required">*</span></label>
-                    <input type="email" id="email" name="email" required placeholder="請填寫能收到活動及匯款訊息之MAIL">
-                    <div class="error" id="emailError">請輸入正確的Email格式</div>
                 </div>
 
                 <div class="form-group">
@@ -307,9 +342,23 @@
                         <option value="">請選擇</option>
                         <option value="no">否，同學會自行去 ($2,000/人)</option>
                         <option value="yes">是，攜眷參加</option>
+                        <option value="group">10人團報</option>
                     </select>
                 </div>
 
+                <!-- 單獨參加時的葷素選擇 -->
+                <div id="singleDietSection" style="display: none;">
+                    <div class="form-group">
+                        <label for="singleDiet">葷食/素食 <span class="required">*</span></label>
+                        <select id="singleDiet" name="singleDiet">
+                            <option value="">請選擇</option>
+                            <option value="葷食">葷食</option>
+                            <option value="素食">素食</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- 攜眷參加時的詳細資訊 -->
                 <div id="companionDetails" style="display: none;">
                     <div class="form-row">
                         <div class="form-group">
@@ -339,11 +388,104 @@
                             <div class="error" id="childChairsError">請輸入有效的數字</div>
                         </div>
                     </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="meatCount">葷食人數</label>
+                            <input type="number" id="meatCount" name="meatCount" min="0" class="number-input" placeholder="0">
+                            <span style="font-size: 12px; color: #6b5b45; margin-left: 8px;">位</span>
+                            <div class="error" id="meatCountError">請輸入有效的數字</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="vegetarianCount">素食人數</label>
+                            <input type="number" id="vegetarianCount" name="vegetarianCount" min="0" class="number-input" placeholder="0">
+                            <span style="font-size: 12px; color: #6b5b45; margin-left: 8px;">位</span>
+                            <div class="error" id="vegetarianCountError">請輸入有效的數字</div>
+                        </div>
+                    </div>
                 </div>
 
+                <!-- 10人團報時的詳細資訊 -->
+                <div id="groupDetails" style="display: none;">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="groupAdultCount">大人 ($2,000/人)</label>
+                            <input type="number" id="groupAdultCount" name="groupAdultCount" min="0" class="number-input" placeholder="0">
+                            <div class="error" id="groupAdultCountError">請輸入有效的數字</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="groupChildCount">小孩（佔位，$2,000/人）</label>
+                            <input type="number" id="groupChildCount" name="groupChildCount" min="0" class="number-input" placeholder="0">
+                            <div class="error" id="groupChildCountError">請輸入有效的數字</div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="groupInfantCount">小孩（不佔位）</label>
+                            <input type="number" id="groupInfantCount" name="groupInfantCount" min="0" class="number-input" placeholder="0">
+                            <div class="error" id="groupInfantCountError">請輸入有效的數字</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="groupChildChairs">需要兒童椅</label>
+                            <input type="number" id="groupChildChairs" name="groupChildChairs" min="0" class="number-input" placeholder="0">
+                            <span style="font-size: 12px; color: #6b5b45; margin-left: 8px;">張</span>
+                            <div class="error" id="groupChildChairsError">請輸入有效的數字</div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="groupMeatCount">葷食人數</label>
+                            <input type="number" id="groupMeatCount" name="groupMeatCount" min="0" class="number-input" placeholder="0">
+                            <span style="font-size: 12px; color: #6b5b45; margin-left: 8px;">位</span>
+                            <div class="error" id="groupMeatCountError">請輸入有效的數字</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="groupVegetarianCount">素食人數</label>
+                            <input type="number" id="groupVegetarianCount" name="groupVegetarianCount" min="0" class="number-input" placeholder="0">
+                            <span style="font-size: 12px; color: #6b5b45; margin-left: 8px;">位</span>
+                            <div class="error" id="groupVegetarianCountError">請輸入有效的數字</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 接駁車選項 -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="shuttle">是否需要搭乘接駁車 <span class="required">*</span></label>
+                        <select id="shuttle" name="shuttle" required>
+                            <option value="">請選擇</option>
+                            <option value="no">否，我自行從餐廳回南女</option>
+                            <option value="yes">是，需現場加付 $50/人</option>
+                        </select>
+                    </div>
+
+                    <!-- 接駁車人數 -->
+                    <div class="form-group" id="shuttleDetails" style="display: none;">
+                        <label for="shuttleCount">搭乘接駁車人數</label>
+                        <input type="number" id="shuttleCount" name="shuttleCount" min="1" class="number-input" placeholder="1">
+                        <span style="font-size: 12px; color: #6b5b45; margin-left: 8px;">人</span>
+                        <div class="error" id="shuttleCountError">請輸入有效的數字</div>
+                    </div>
+                </div>
+
+                <!-- 費用總計顯示 -->
                 <div id="summaryDisplay" style="display: none; background: #f8f9fa; padding: 16px; border-radius: 8px; margin: 16px 0; border-left: 4px solid #8b7355;">
                     <div id="totalPeople" style="margin-bottom: 8px; font-weight: 500; color: #6b5b45;"></div>
-                    <div id="totalCost" style="font-weight: bold; color: #8b7355; font-size: 16px;"></div>
+                    <div id="totalCost" style="font-weight: bold; color: #8b7355; font-size: 16px; margin-bottom: 8px;"></div>
+                    
+                    <!-- 驗證資訊整合到這裡 -->
+                    <div id="validationInfo" style="font-size: 12px; margin-top: 8px;">
+                        <div id="dietDisplay" style="color: #6b5b45; margin-bottom: 4px;"></div>
+                        <div id="validationError" style="color: #c67e5c; display: none; margin-bottom: 4px;"></div>
+                    </div>
+                    
+                    <div style="font-size: 12px; color: #999; margin-top: 8px;">※ 無計入接駁車費用，現場搭乘時支付</div>
                 </div>
 
                 <div class="form-group">
@@ -404,6 +546,67 @@ EX：籃球隊團報"></textarea>
             return !isNaN(num) && num >= 0;
         }
 
+        // 驗證團報人數和葷素食
+        function validateGroupRegistration() {
+            const adults = parseInt(document.getElementById('groupAdultCount').value) || 0;
+            const children = parseInt(document.getElementById('groupChildCount').value) || 0;
+            const infants = parseInt(document.getElementById('groupInfantCount').value) || 0;
+            const meat = parseInt(document.getElementById('groupMeatCount').value) || 0;
+            const vegetarian = parseInt(document.getElementById('groupVegetarianCount').value) || 0;
+            
+            const totalPeople = adults + children + infants;
+            const totalDiet = meat + vegetarian;
+            
+            const dietDisplay = document.getElementById('dietDisplay');
+            const errorDisplay = document.getElementById('validationError');
+            
+            dietDisplay.textContent = `葷素食統計：葷食 ${meat} 位 + 素食 ${vegetarian} 位 = ${totalDiet} 位`;
+            
+            // 檢查是否達到10人
+            if (totalPeople > 0 && totalPeople < 10) {
+                errorDisplay.textContent = `⚠️ 團報需至少10人，目前只有 ${totalPeople} 人`;
+                errorDisplay.style.display = 'block';
+                return false;
+            }
+            
+            // 檢查葷素食人數是否等於總人數
+            if (totalPeople > 0 && totalDiet !== totalPeople) {
+                errorDisplay.textContent = `⚠️ 葷素食總數 (${totalDiet}) 需等於總人數 (${totalPeople})`;
+                errorDisplay.style.display = 'block';
+                return false;
+            }
+            
+            errorDisplay.style.display = 'none';
+            return true;
+        }
+
+        // 驗證攜眷葷素食
+        function validateCompanionDiet() {
+            const adults = parseInt(document.getElementById('adultCount').value) || 1;
+            const children = parseInt(document.getElementById('childCount').value) || 0;
+            const infants = parseInt(document.getElementById('infantCount').value) || 0;
+            const meat = parseInt(document.getElementById('meatCount').value) || 0;
+            const vegetarian = parseInt(document.getElementById('vegetarianCount').value) || 0;
+            
+            const totalPeople = adults + children + infants;
+            const totalDiet = meat + vegetarian;
+            
+            const dietDisplay = document.getElementById('dietDisplay');
+            const errorDisplay = document.getElementById('validationError');
+            
+            dietDisplay.textContent = `葷素食統計：葷食 ${meat} 位 + 素食 ${vegetarian} 位 = ${totalDiet} 位`;
+            
+            // 檢查葷素食人數是否等於總人數
+            if (totalPeople > 0 && totalDiet !== totalPeople) {
+                errorDisplay.textContent = `⚠️ 葷素食總數 (${totalDiet}) 需等於總人數 (${totalPeople})`;
+                errorDisplay.style.display = 'block';
+                return false;
+            }
+            
+            errorDisplay.style.display = 'none';
+            return true;
+        }
+
         // 計算總費用和人數
         function calculateTotal() {
             const hasCompanion = document.getElementById('hasCompanion').value;
@@ -413,46 +616,102 @@ EX：籃球隊團報"></textarea>
                 return;
             }
 
+            let totalPeople = 0;
+            let totalCost = 0;
+            let description = '';
+
             if (hasCompanion === 'no') {
-                // 不攜眷：只有自己
-                document.getElementById('totalPeople').textContent = '總報名人數：1人';
-                document.getElementById('totalCost').textContent = '總費用：$2,000 元';
-                document.getElementById('summaryDisplay').style.display = 'block';
+                // 單獨參加
+                totalPeople = 1;
+                totalCost = 2000;
+                description = '總報名人數：1人';
             } else if (hasCompanion === 'yes') {
-                // 攜眷：計算各類人數和費用
+                // 攜眷參加
                 const adults = parseInt(document.getElementById('adultCount').value) || 1;
                 const children = parseInt(document.getElementById('childCount').value) || 0;
                 const infants = parseInt(document.getElementById('infantCount').value) || 0;
                 
-                // 只有大人和佔位小孩需要計費
-                const totalCost = (adults + children) * 2000;
+                totalPeople = adults + children + infants;
+                totalCost = (adults + children) * 2000; // 只有佔位者需要付費
+                description = `總報名人數：大人 ${adults} 人、小孩須位置 ${children} 人、小孩不占位 ${infants} 人`;
                 
-                document.getElementById('totalPeople').textContent = 
-                    `總報名人數：大人 ${adults} 人、小孩須位置 ${children} 人、小孩不占位 ${infants} 人`;
-                document.getElementById('totalCost').textContent = 
-                    `總費用：$${totalCost.toLocaleString()} 元 (小孩不占位免費)`;
-                document.getElementById('summaryDisplay').style.display = 'block';
+                // 驗證葷素食
+                validateCompanionDiet();
+            } else if (hasCompanion === 'group') {
+                // 10人團報
+                const adults = parseInt(document.getElementById('groupAdultCount').value) || 0;
+                const children = parseInt(document.getElementById('groupChildCount').value) || 0;
+                const infants = parseInt(document.getElementById('groupInfantCount').value) || 0;
+                
+                totalPeople = adults + children + infants;
+                totalCost = (adults + children) * 2000; // 只有佔位者需要付費
+                description = `總報名人數：大人 ${adults} 人、小孩須位置 ${children} 人、小孩不占位 ${infants} 人`;
+                
+                // 驗證團報
+                validateGroupRegistration();
             }
+
+            document.getElementById('totalPeople').textContent = description;
+            document.getElementById('totalCost').textContent = `總費用：${totalCost.toLocaleString()} 元 ${hasCompanion !== 'no' ? '(小孩不占位免費)' : ''}`;
+            document.getElementById('summaryDisplay').style.display = 'block';
         }
 
-        // 顯示/隱藏攜眷詳細資訊
+        // 顯示/隱藏相關區塊
         document.getElementById('hasCompanion').addEventListener('change', function() {
+            const singleDiet = document.getElementById('singleDietSection');
             const companionDetails = document.getElementById('companionDetails');
-            if (this.value === 'yes') {
+            const groupDetails = document.getElementById('groupDetails');
+            
+            // 隱藏所有區塊
+            singleDiet.style.display = 'none';
+            companionDetails.style.display = 'none';
+            groupDetails.style.display = 'none';
+            
+            if (this.value === 'no') {
+                // 單獨參加：顯示葷素選擇
+                singleDiet.style.display = 'block';
+            } else if (this.value === 'yes') {
+                // 攜眷參加：顯示攜眷詳細資訊
                 companionDetails.style.display = 'block';
                 // 設定預設值
                 if (!document.getElementById('adultCount').value) {
                     document.getElementById('adultCount').value = '1';
                 }
-            } else {
-                companionDetails.style.display = 'none';
+            } else if (this.value === 'group') {
+                // 10人團報：顯示團報詳細資訊
+                groupDetails.style.display = 'block';
             }
             calculateTotal();
         });
 
-        // 監聽人數變化，即時計算
-        ['adultCount', 'childCount', 'infantCount'].forEach(id => {
-            document.getElementById(id).addEventListener('input', calculateTotal);
+        // 顯示/隱藏接駁車詳細資訊
+        document.getElementById('shuttle').addEventListener('change', function() {
+            const shuttleDetails = document.getElementById('shuttleDetails');
+            if (this.value === 'yes') {
+                shuttleDetails.style.display = 'block';
+                // 根據參與方式設定預設搭乘人數
+                const hasCompanion = document.getElementById('hasCompanion').value;
+                if (hasCompanion === 'no') {
+                    document.getElementById('shuttleCount').value = '1';
+                }
+            } else {
+                shuttleDetails.style.display = 'none';
+            }
+        });
+
+        // 監聽人數變化，即時計算和驗證
+        ['adultCount', 'childCount', 'infantCount', 'meatCount', 'vegetarianCount'].forEach(id => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.addEventListener('input', calculateTotal);
+            }
+        });
+
+        ['groupAdultCount', 'groupChildCount', 'groupInfantCount', 'groupMeatCount', 'groupVegetarianCount'].forEach(id => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.addEventListener('input', calculateTotal);
+            }
         });
 
         // 顯示錯誤訊息
@@ -512,7 +771,11 @@ EX：籃球隊團報"></textarea>
         });
 
         // 數字欄位驗證
-        ['adultCount', 'childCount', 'infantCount', 'childChairs'].forEach(id => {
+        const numberFields = ['adultCount', 'childCount', 'infantCount', 'childChairs', 'meatCount', 'vegetarianCount',
+                             'groupAdultCount', 'groupChildCount', 'groupInfantCount', 'groupChildChairs', 
+                             'groupMeatCount', 'groupVegetarianCount', 'shuttleCount'];
+        
+        numberFields.forEach(id => {
             const element = document.getElementById(id);
             if (element) {
                 element.addEventListener('input', function() {
@@ -538,8 +801,8 @@ EX：籃球隊團報"></textarea>
             const lineId = document.getElementById('lineId').value.trim();
             const email = document.getElementById('email').value.trim();
             const classValue = document.getElementById('class').value;
-            const diet = document.getElementById('diet').value;
             const hasCompanion = document.getElementById('hasCompanion').value;
+            const shuttle = document.getElementById('shuttle').value;
 
             if (!name) {
                 showError('name', 'nameError', '請輸入姓名');
@@ -575,60 +838,76 @@ EX：籃球隊團報"></textarea>
                 isValid = false;
             }
 
-            if (!diet) {
-                alert('請選擇葷食或素食');
-                isValid = false;
-            }
-
             if (!hasCompanion || hasCompanion === '') {
                 alert('請選擇是否攜眷');
                 isValid = false;
             }
 
+            if (!shuttle || shuttle === '') {
+                alert('請選擇是否需要搭乘接駁車');
+                isValid = false;
+            }
+
+            // 驗證葷素食選擇
+            if (hasCompanion === 'no') {
+                const singleDiet = document.getElementById('singleDiet').value;
+                if (!singleDiet) {
+                    alert('請選擇葷食或素食');
+                    isValid = false;
+                }
+            }
+
             if (!isValid) {
+                // 重新顯示表單
+                form.style.display = 'block';
+                loadingDiv.style.display = 'none';
                 return false;
             }
 
-            // 處理攜眷相關數據
-            let finalAdultCount = '1';
-            let finalChildCount = '0';
-            let finalInfantCount = '0';
-            let finalChildChairs = '0';
+            // 處理提交數據
+            let finalData = {
+                class: classValue,
+                name: name,
+                nickname: document.getElementById('nickname').value.trim(),
+                phone: phone,
+                lineId: lineId,
+                email: email,
+                hasCompanion: hasCompanion,
+                shuttle: shuttle,
+                specialNeeds: document.getElementById('specialNeeds').value.trim(),
+                remarks: document.getElementById('remarks').value.trim()
+            };
 
-            if (hasCompanion === 'yes') {
-                const adultCount = document.getElementById('adultCount').value;
-                const childCount = document.getElementById('childCount').value;
-                const infantCount = document.getElementById('infantCount').value;
-                const childChairs = document.getElementById('childChairs').value;
+            // 根據參與方式處理不同的數據
+            if (hasCompanion === 'no') {
+                finalData.singleDiet = document.getElementById('singleDiet').value;
+                finalData.adultCount = '1';
+                finalData.childCount = '0';
+                finalData.infantCount = '0';
+                finalData.childChairs = '0';
+                finalData.meatCount = finalData.singleDiet === '葷食' ? '1' : '0';
+                finalData.vegetarianCount = finalData.singleDiet === '素食' ? '1' : '0';
+            } else if (hasCompanion === 'yes') {
+                finalData.adultCount = document.getElementById('adultCount').value || '1';
+                finalData.childCount = document.getElementById('childCount').value || '0';
+                finalData.infantCount = document.getElementById('infantCount').value || '0';
+                finalData.childChairs = document.getElementById('childChairs').value || '0';
+                finalData.meatCount = document.getElementById('meatCount').value || '0';
+                finalData.vegetarianCount = document.getElementById('vegetarianCount').value || '0';
+            } else if (hasCompanion === 'group') {
+                finalData.adultCount = document.getElementById('groupAdultCount').value || '0';
+                finalData.childCount = document.getElementById('groupChildCount').value || '0';
+                finalData.infantCount = document.getElementById('groupInfantCount').value || '0';
+                finalData.childChairs = document.getElementById('groupChildChairs').value || '0';
+                finalData.meatCount = document.getElementById('groupMeatCount').value || '0';
+                finalData.vegetarianCount = document.getElementById('groupVegetarianCount').value || '0';
+            }
 
-                if (adultCount && !validateNumber(adultCount)) {
-                    showError('adultCount', 'adultCountError', '請輸入有效的數字（1或以上）');
-                    isValid = false;
-                }
-
-                if (childCount && !validateNumber(childCount)) {
-                    showError('childCount', 'childCountError', '請輸入有效的數字（0或正整數）');
-                    isValid = false;
-                }
-
-                if (infantCount && !validateNumber(infantCount)) {
-                    showError('infantCount', 'infantCountError', '請輸入有效的數字（0或正整數）');
-                    isValid = false;
-                }
-
-                if (childChairs && !validateNumber(childChairs)) {
-                    showError('childChairs', 'childChairsError', '請輸入有效的數字（0或正整數）');
-                    isValid = false;
-                }
-
-                if (!isValid) {
-                    return false;
-                }
-
-                finalAdultCount = adultCount || '1';
-                finalChildCount = childCount || '0';
-                finalInfantCount = infantCount || '0';
-                finalChildChairs = childChairs || '0';
+            // 處理接駁車數據
+            if (shuttle === 'yes') {
+                finalData.shuttleCount = document.getElementById('shuttleCount').value || '1';
+            } else {
+                finalData.shuttleCount = '0';
             }
 
             // 顯示載入中
@@ -638,22 +917,7 @@ EX：籃球隊團報"></textarea>
             // 使用 JSONP 方式提交到 GAS
             const gasUrl = 'https://script.google.com/macros/s/AKfycbzslMlWiYuIiFA0RHcVqbk-lyAlOjZ8gKKy-OXh5ItCsmmEfGficqANT8lgF3kkC15E/exec';
             
-            const params = new URLSearchParams({
-                class: classValue,
-                name: name,
-                nickname: document.getElementById('nickname').value.trim(),
-                phone: phone,
-                lineId: lineId,
-                email: email,
-                diet: diet,
-                hasCompanion: hasCompanion,
-                adultCount: finalAdultCount,
-                childCount: finalChildCount,
-                infantCount: finalInfantCount,
-                childChairs: finalChildChairs,
-                specialNeeds: document.getElementById('specialNeeds').value.trim(),
-                remarks: document.getElementById('remarks').value.trim()
-            });
+            const params = new URLSearchParams(finalData);
 
             // 創建 script 標籤進行 JSONP 請求
             const script = document.createElement('script');
@@ -673,7 +937,7 @@ EX：籃球隊團報"></textarea>
                 // 重置表單
                 form.reset();
                 
-                // 3秒後重新顯示表單
+                // 60秒後重新顯示表單
                 setTimeout(function() {
                     successDiv.style.display = 'none';
                     form.style.display = 'block';
