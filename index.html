@@ -704,14 +704,20 @@ EX：籃球隊團報"></textarea>
         ['adultCount', 'childCount', 'infantCount', 'meatCount', 'vegetarianCount'].forEach(id => {
             const element = document.getElementById(id);
             if (element) {
-                element.addEventListener('input', calculateTotal);
+                element.addEventListener('input', function() {
+                    calculateTotal();
+                    checkFormSubmittable();
+                });
             }
         });
 
         ['groupAdultCount', 'groupChildCount', 'groupInfantCount', 'groupMeatCount', 'groupVegetarianCount'].forEach(id => {
             const element = document.getElementById(id);
             if (element) {
-                element.addEventListener('input', calculateTotal);
+                element.addEventListener('input', function() {
+                    calculateTotal();
+                    checkFormSubmittable();
+                });
             }
         });
 
@@ -858,10 +864,20 @@ EX：籃球隊團報"></textarea>
                 }
             }
 
+            // 額外驗證：10人團報和葷素食檢查
+            if (hasCompanion === 'group') {
+                if (!validateGroupRegistration()) {
+                    alert('10人團報驗證失敗，請檢查人數和葷素食統計');
+                    isValid = false;
+                }
+            } else if (hasCompanion === 'yes') {
+                if (!validateCompanionDiet()) {
+                    alert('攜眷葷素食統計錯誤，請檢查葷素食人數是否等於總人數');
+                    isValid = false;
+                }
+            }
+
             if (!isValid) {
-                // 重新顯示表單
-                form.style.display = 'block';
-                loadingDiv.style.display = 'none';
                 return false;
             }
 
