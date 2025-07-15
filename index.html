@@ -280,25 +280,25 @@
                     <label for="class">班級 <span class="required">*</span></label>
                     <select id="class" name="class" required>
                         <option value="">請選擇班級</option>
-                        <option value="第1班">第1班</option>
-                        <option value="第2班">第2班</option>
-                        <option value="第3班">第3班</option>
-                        <option value="第4班">第4班</option>
-                        <option value="第5班">第5班</option>
-                        <option value="第6班">第6班</option>
-                        <option value="第7班">第7班</option>
-                        <option value="第8班">第8班</option>
-                        <option value="第9班">第9班</option>
-                        <option value="第10班">第10班</option>
-                        <option value="第11班">第11班</option>
-                        <option value="第12班">第12班</option>
-                        <option value="第13班">第13班</option>
-                        <option value="第14班">第14班</option>
-                        <option value="第15班">第15班</option>
-                        <option value="第16班">第16班</option>
-                        <option value="第17班">第17班</option>
-                        <option value="第18班">第18班</option>
-                        <option value="第19班">第19班</option>
+                        <option value="第1班">301班</option>
+                        <option value="第2班">302班</option>
+                        <option value="第3班">303班</option>
+                        <option value="第4班">304班</option>
+                        <option value="第5班">305班</option>
+                        <option value="第6班">306班</option>
+                        <option value="第7班">307班</option>
+                        <option value="第8班">308班</option>
+                        <option value="第9班">309班</option>
+                        <option value="第10班">310班</option>
+                        <option value="第11班">311班</option>
+                        <option value="第12班">312班</option>
+                        <option value="第13班">313班</option>
+                        <option value="第14班">314班</option>
+                        <option value="第15班">315班</option>
+                        <option value="第16班">316班</option>
+                        <option value="第17班">317班</option>
+                        <option value="第18班">318班</option>
+                        <option value="第19班">319班</option>
                         <option value="滿10人團報">滿10人團報</option>
                     </select>
                     <div style="margin-top: 8px; font-size: 12px; color: #6b5b45; line-height: 1.4;">
@@ -570,12 +570,17 @@ EX：籃球隊團報"></textarea>
             
             dietDisplay.textContent = `葷素食統計：葷食 ${meat} 位 + 素食 ${vegetarian} 位 = ${totalDiet} 位（需要餐點 ${needDietPeople} 位）`;
             
-            // 檢查是否達到10人
-            if (totalPeople > 0 && totalPeople < 10) {
-                errorDisplay.textContent = `⚠️ 團報需至少10人，目前只有 ${totalPeople} 人`;
-                errorDisplay.style.display = 'block';
-                return false;
-            }
+            // 檢查是否剛好10人（不計入不佔位）
+const payingPeople = adults + children; // 需要付費的人數
+if (payingPeople > 0 && payingPeople !== 10) {
+    if (payingPeople < 10) {
+        errorDisplay.textContent = `⚠️ 團報需剛好10人，目前付費人數只有 ${payingPeople} 人`;
+    } else {
+        errorDisplay.textContent = `⚠️ 團報限制10人，目前付費人數有 ${payingPeople} 人，請減少人數`;
+    }
+    errorDisplay.style.display = 'block';
+    return false;
+}
             
             // 檢查葷素食人數是否等於需要餐點的人數
             if (needDietPeople > 0 && totalDiet !== needDietPeople) {
