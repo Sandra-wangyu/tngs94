@@ -261,10 +261,11 @@
 •不佔位與學齡前兒童免收費。不佔位係指使用背巾或是兒童椅；學齡前兒童指七歲以下且未上國小。考量空間，每桌限兩位。<br>
 •七歲以上國小兒童視同佔位<br>
 •每桌最多容納 10 位佔位者+2位不佔位兒童<br><br>
-                        <strong>2. 費用包含內容：</strong>•餐費<br>
+                        <strong>2. 費用包含內容：</strong><br>
+•餐費<br>
 •校友會精緻紀念品<br>
 •師長桌餐費與獻花<br>
-•活動相關雜支（如音響、場地布置、接駁回南女的遊覽車等）<br>
+•活動相關雜支（如音響、場地布置等）<br>
                     </div>
                 </div>
             </div>
@@ -501,7 +502,7 @@ EX：原11班要併到15班
 EX：籃球隊團報"></textarea>
                 </div>
 
-                <button type="submit" class="submit-btn">送出報名</button>
+                <button type="submit" id="submitBtn" class="submit-btn">送出報名</button>
             </form>
 
             <div class="loading" id="loading">
@@ -682,6 +683,7 @@ EX：籃球隊團報"></textarea>
                 groupDetails.style.display = 'block';
             }
             calculateTotal();
+            checkFormSubmittable();
         });
 
         // 顯示/隱藏接駁車詳細資訊
