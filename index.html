@@ -886,7 +886,7 @@ if (payingPeople > 0 && payingPeople !== 10) {
             // 額外驗證：10人團報和葷素食檢查
             if (hasCompanion === 'group') {
                 if (!validateGroupRegistration()) {
-                    alert('10人團報驗證失敗，請檢查人數和葷素食統計');
+                    alert('10人團報報名失敗，請檢查人數和葷素食統計');
                     isValid = false;
                 }
             } else if (hasCompanion === 'yes') {
@@ -951,7 +951,7 @@ if (payingPeople > 0 && payingPeople !== 10) {
             loadingDiv.style.display = 'block';
 
             // 使用 JSONP 方式提交到 GAS
-            const gasUrl = 'https://script.google.com/macros/s/AKfycbwD0Y0OM8ERqCQ-e0xDWMbEoLH1R7MXMtIEQFq9qS-Ge6w1YJImlFrmAjfsPkLX-XG4/exec';
+            const gasUrl = 'https://script.google.com/macros/s/AKfycbzRmFfGuRMALvE5ANTFotK8wLstbESVQ24PBCvOc4m-yerqs76Gm_62Pw0nuhqaawpv/exec';
             
             const params = new URLSearchParams(finalData);
 
