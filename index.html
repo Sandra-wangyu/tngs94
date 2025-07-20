@@ -547,10 +547,11 @@ EX：籃球隊團報"></textarea>
         }
 
         // 驗證LINE ID
-        function validateLineId(lineId) {
-            const lineIdRegex = /^[a-zA-Z0-9._]+$/;
-            return lineIdRegex.test(lineId);
-        }
+        function validateLineIdLoose(lineId) {
+    // 檢查是否包含中文字符或空白字符
+    const invalidCharsRegex = /[\u4e00-\u9fff\s]/;
+    return !invalidCharsRegex.test(lineId) && lineId.length > 0;
+}
 
         // 驗證Email
         function validateEmail(email) {
