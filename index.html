@@ -546,12 +546,12 @@ EX：籃球隊團報"></textarea>
             return phoneRegex.test(phone);
         }
 
-        // 驗證LINE ID
+        // 驗證LINE ID - 只排除中文和空白字符
         function validateLineId(lineId) {
-            const lineIdRegex = /^[a-zA-Z0-9._]+$/;
-            return lineIdRegex.test(lineId);
+            const invalidCharsRegex = /[\u4e00-\u9fff\s]/;
+            return !invalidCharsRegex.test(lineId) && lineId.length > 0;
         }
-
+        
         // 驗證Email
         function validateEmail(email) {
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -859,7 +859,7 @@ if (payingPeople > 0 && payingPeople !== 10) {
                 showError('lineId', 'lineIdError', '請輸入LINE ID');
                 isValid = false;
             } else if (!validateLineId(lineId)) {
-                showError('lineId', 'lineIdError', 'LINE ID 只能包含英文、數字、底線和點');
+                showError('lineId', 'lineIdError', 'LINE ID 不能輸入中文和空格');
                 isValid = false;
             }
 
